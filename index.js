@@ -1,8 +1,13 @@
-const path = require("path");
-const fs = require("fs");
-const async = require("async");
-const AppDirectory = require("appdirectory");
-const compareVersions = require( "compare-versions");
+import path from 'path';
+import fs from 'fs';
+import os from 'os';
+
+import async from 'async';
+import AppDirectory from 'appdirectory';
+import compareVersions from 'compare-versions';
+import { createRequire } from 'node:module';
+
+const require = createRequire(import.meta.url);
 
 
 var beLoud = true;
@@ -78,13 +83,13 @@ function mkDirByPathSync(targetDir, {isRelativeToScript = false} = {}) {
     const curDir = path.resolve(baseDir, parentDir, childDir);
     try {
       fs.mkdirSync(curDir);
-      if ( beLoud ) { console.log(`Directory ${curDir} created!`); }
+      if ( beLoud ) { console.log(`[electron-plugins] Directory ${curDir} created!`); }
     } catch (err) {
       if (err.code !== "EEXIST") {
         throw err;
       }
 
-      if ( beLoud ) { console.log(`Directory ${curDir} already exists!`); }
+      if ( beLoud ) { console.log(`[electron-plugins]  Directory ${curDir} already exists!`); }
     }
 
     return curDir;
@@ -111,7 +116,7 @@ function substitutePluginPath( passedPath, appDir, callback ) {
       // Check to see if this is a "relative path", ASSUME ~ is homedir for all platforms.
       if( pluginPath.slice( 0, 1 ) === "~" )
       {
-        pluginPath = path.join( require( "os" ).homedir(), pluginPath.substr(1) );
+        pluginPath = path.join( os.homedir(), pluginPath.substr(1) );
       }
       if( pluginPath.slice( -1 ) === ":" )
       {
@@ -125,10 +130,10 @@ function substitutePluginPath( passedPath, appDir, callback ) {
 
 function discover( pluginRelPath, appD, useDev, callback ) {
   let foundPlugins = {};
-  var appDir = appD ? appD : path.dirname(process.mainModule.filename);
-  substitutePluginPath( pluginRelPath, appDir, function ( err, pluginPath ) {
+  var appDir = appD ? appD : path.dirname(process?.mainModule?.filename);
+  substitutePluginPath( pluginRelPath, appDir,  function ( err, pluginPath ) {
     if( fs.existsSync( pluginPath ) ) {
-      dirContents = fs.readdirSync( pluginPath );
+      const dirContents = fs.readdirSync( pluginPath );
       for( var contLoop=0; contLoop < dirContents.length; contLoop++ )
       {
         if( fs.statSync( path.join(pluginPath, dirContents[ contLoop ])).isDirectory() )
@@ -214,7 +219,7 @@ function load( appContext, callback) {
   })
 }
 
-module.exports = {
+export default {
     load: load,
     discover: discover
 }

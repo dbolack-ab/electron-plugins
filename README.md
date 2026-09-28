@@ -1,5 +1,7 @@
 # electron-plugins
-Plugin loader for electron applications.
+Updated plugin loader for electron applications.
+
+This was forked from https://github.com/EvolveLabs/electron-plugins which has sat unmaintained since slightly before I originally used it. I'm *attempting* to clean up and maintain this a little bit in case it solves problems for other folks too.
 
 ## Installation
 ```
@@ -67,10 +69,3 @@ function Plugin(context) {
 
 module.exports = Plugin
 ```
-
-## Examples
-* [electron-updater-sample](https://github.com/EvolveLabs/electron-updater-sample)
-* [electron-updater-sample-plugin](https://github.com/EvolveLabs/electron-updater-sample-plugin)
-
-## Related
-* [electron-updater](https://github.com/EvolveLabs/electron-updater)

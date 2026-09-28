@@ -1,35 +1,27 @@
 {
   "name": "@abquintic/electron-plugins",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Plugin loader for electron applications.",
   "keywords": [
     "electron",
     "plugins"
   ],
-  "homepage": "https://github.com/evolvelabs/electron-plugins",
+  "type" : "module",
+  "homepage": "https://github.com/dbolack-ab/electron-plugins",
   "bugs": {
-    "url": "https://github.com/evolvelabs/electron-plugins/issues"
+    "url": "https://github.com/dbolack-ab/electron-plugins/issues"
   },
   "license": "MIT",
-  "author": "Evolve LLC, AB Quintic",
+  "author": "Evolve LLC, David Bolack",
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dbolack-ab/electron-plugins.git"
   },
-  "scripts": {
-    "test": "mocha"
-  },
+  "scripts": {},
   "dependencies": {
     "appdirectory": "^0.1.0",
-    "async": "^0.9.0",
-    "compare-versions": "^3.1.0"
-  },
-  "devDependencies": {
-    "chai": "^2.3.0",
-    "mocha": "^2.2.4",
-    "proxyquire": "^1.4.0",
-    "sinon": "^1.14.1"
+    "async": "^3.2.6"
   },
   "directories": {
     "test": "test"
